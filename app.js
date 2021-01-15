@@ -1,7 +1,7 @@
 const express = require('express')
 const request = require('request')
 const app = express()
-
+ 
 app.get('/api/rates', (req, res) => { 
     const base = req.query.base
     const currency = req.query.currency
@@ -28,6 +28,7 @@ app.get('/api/rates', (req, res) => {
     })
 })
 
-app.listen(2000, () => {
+const port = process.env.PORT || 2000
+app.listen(port, () => {
     console.log('omo eh')
 })
