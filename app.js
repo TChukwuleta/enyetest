@@ -22,13 +22,13 @@ app.get('/api/rates', (req, res) => {
                     base: basee,
                     date: datee,
                     rates: customRates
-                }
+                } 
             }
-            console.log(bodee);
-            res.json(bodee)
+            //console.log(bodee);
+            res.status(200).json(bodee)
         }
         else {
-            res.json(err)
+            res.status(400).json(err)
         }
     })
 })
