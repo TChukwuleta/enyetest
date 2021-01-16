@@ -2,6 +2,9 @@ const express = require('express')
 const request = require('request')
 const app = express()
  
+app.get('/', (req, res) => {
+    res.status(200).send('Cheers to the amazing team at Enye')
+})
 app.get('/api/rates', (req, res) => { 
     const base = req.query.base
     const {currency} = req.query;
