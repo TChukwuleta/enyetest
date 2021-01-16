@@ -4,22 +4,27 @@ const app = express()
  
 app.get('/api/rates', (req, res) => { 
     const base = req.query.base
-    const currency = req.query.currency
+    const {currency} = req.query;
 
     const url = 'https://api.exchangeratesapi.io/latest?base=' + base 
     request({url: url, json: true}, (err, response, body) => {
+      const currencies = currency.split(",");
         if (!err && response.statusCode === 200) {
             const basee = body.base
             const datee = body.date
             //const ratee = body.rates
+            const customRates = {}
+            for (let c of currencies){
+              customRates[c] = body.rates[c];
+            }
             let bodee = {
                 "results": {
                     base: basee,
                     date: datee,
-                    rates: body.rates
+                    rates: customRates
                 }
             }
-            console.log(bodee)
+            console.log(bodee);
             res.json(bodee)
         }
         else {
